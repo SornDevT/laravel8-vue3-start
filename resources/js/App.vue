@@ -149,8 +149,7 @@
         </div>
 
         <footer class="footer">
-            © 2021 Eliteadmin by themedesigner.in
-            <a href="">WrapPixel</a>
+            © 2021 Sorndev
         </footer>
 
     </div>
