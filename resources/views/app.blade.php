@@ -8,6 +8,8 @@
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet"/>
     <link href="assets/css/morris.css" rel="stylesheet">
     <link href="assets/css/style.min.css" rel="stylesheet">
+    <link href="assets/css/pages/footable-page.css" rel="stylesheet">
+    <link href="assets/css/font_lao.css" rel="stylesheet">
 </head>
 <body class="skin-default fixed-layout">
     <!-- ============================================================== -->

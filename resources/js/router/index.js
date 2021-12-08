@@ -3,6 +3,7 @@ import Home from "../pages/Home.vue";
 import Pos from "../pages/Pos.vue";
 import Report from "../pages/Report.vue";
 import Transection from "../pages/Transection.vue";
+import Notfound from "../pages/Notfound.vue"
 
 export const routes = [
     {
@@ -25,6 +26,10 @@ export const routes = [
         path: "/transection",
         component: Transection,
     },
+    {
+        path: "/:catchAll(.*)",
+        component: Notfound,
+      },
 ];
 
 const router = createRouter({

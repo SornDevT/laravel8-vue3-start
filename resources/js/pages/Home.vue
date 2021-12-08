@@ -8,7 +8,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb justify-content-end">
                                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard 1</li>
+                                <li class="breadcrumb-item active">Store</li>
                             </ol>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover no-wrap">
+                                <table class="table table-hover no-wrap footable footable-1 footable-paging footable-paging-center">
                                     <thead>
                                         <tr>
                                             <th class="text-center">#</th>
@@ -101,7 +101,9 @@
                                             <td><span class="text-info">$1250</span></td>
                                         </tr>
                                     </tbody>
+
                                 </table>
+
                             </div>
                         </div>
                     </div>
