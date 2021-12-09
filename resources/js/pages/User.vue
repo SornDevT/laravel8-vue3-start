@@ -27,7 +27,6 @@
                                         <img src="assets/images/big/img4.jpg" class="img-responsive radius">
                                 </div>
                                 <div class="col-md-8">
-                                  
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
