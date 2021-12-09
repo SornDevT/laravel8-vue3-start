@@ -39,11 +39,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item">
-                            <form class="app-search d-none d-md-block d-lg-block">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter">
-                            </form>
-                        </li>
+                        
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -118,16 +114,24 @@
                             </router-link>
                         </li>
                         <li >
-                            <router-link to="report" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <router-link to="/report" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="icon-chart"></i>
                                 <span class="hide-menu">ລາຍງານ Report
                                 </span>
                             </router-link>
                         </li>
                         <li >
-                            <router-link to="transection" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <router-link to="/transection" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class=" icon-graph"></i>
                                 <span class="hide-menu">Transection
+                                </span>
+                            </router-link>
+                        </li>
+
+                        <li >
+                            <router-link to="/user" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="icon-user"></i>
+                                <span class="hide-menu">ຈັດການຜູ້ໃຊ້
                                 </span>
                             </router-link>
                         </li>

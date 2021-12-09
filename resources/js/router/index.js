@@ -1,15 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "../pages/Home.vue";
+import Store from "../pages/Store.vue";
 import Pos from "../pages/Pos.vue";
 import Report from "../pages/Report.vue";
 import Transection from "../pages/Transection.vue";
+import User from "../pages/User.vue";
 import Notfound from "../pages/Notfound.vue"
 
 export const routes = [
     {
-        name: "home",
+        name: "store",
         path: "/",
-        component: Home,
+        component: Store,
     },
     {
         name: "pos",
@@ -25,6 +26,11 @@ export const routes = [
         name: "transection",
         path: "/transection",
         component: Transection,
+    },
+    {
+        name: "user",
+        path: "/user",
+        component: User,
     },
     {
         path: "/:catchAll(.*)",

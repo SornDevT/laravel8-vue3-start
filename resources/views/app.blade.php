@@ -11,6 +11,7 @@
     <link href="assets/css/style.min.css" rel="stylesheet">
     <link href="assets/css/pages/footable-page.css" rel="stylesheet">
     <link href="assets/css/font_lao.css" rel="stylesheet">
+  
 </head>
 
 <body class="skin-default fixed-layout">
@@ -27,6 +28,8 @@
     <script src="assets/js/waves.js"></script>
     <script src="assets/js/sidebarmenu.js"></script>
     <script src="assets/js/custom.min.js"></script>
+    <script src="assets/js/dashboard3.js"></script>
+    <script src="assets/js/chart.js/Chart.min.js"></script>
     <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>
 
