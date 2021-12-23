@@ -56,7 +56,7 @@
                                                 <td>{{list.name}}</td>
                                                 <td class="text-end">
                                                     {{formatPrice(list.price_sell)}} ກີບ <br>
-                                                   <i @click="DelOr(list.id)" class="mdi mdi-minus-circle text-info cursor-pointer"></i> {{list.order_amount}} <i @click="AddOr(list.id)" class="mdi mdi-plus-circle text-info cursor-pointer"></i> | 
+                                                   <i @click="DelOr(list.id)" class="mdi mdi-minus-circle text-info cursor-pointer"></i> {{list.order_amount}} <i @click="AddOr(list.id)" class="mdi mdi-plus-circle text-info cursor-pointer"></i> |
                                                    <i @click="DelOne(list.id)" class="mdi mdi-close-circle text-danger cursor-pointer"></i>
                                                 </td>
                                                 <td class="text-end"> {{formatPrice(list.price_sell*list.order_amount)}} ກີບ </td>
@@ -129,7 +129,7 @@
               <div class="row justify-content-center d-flex mt-2">
                 <button type="button" class="btn btn-success" @click="ConfirmPay"  style="width:180px;" :disabled="CheckCPay"><i class="fas fa-coins"></i> ບືນຍັນຊຳລ່ະເງິນ </button>
               </div>
-                                                
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">ປິດ</button>
@@ -191,6 +191,7 @@ export default {
               if (response.data.success) {
                 $('#modal-pay').modal('hide');
                 this.ListOrder = [];
+                this.CashAmount = '';
                 this.GetAllStore();
               } else {
                 console.log(response.data.message);
@@ -202,7 +203,7 @@ export default {
         });
     },
     AddNum(num){
-         if(num=='-'){
+         if(num=='-'){ 
                         this.CashAmount = this.CashAmount.slice(0, -1)
                     } else {
                         this.CashAmount = this.CashAmount+num
@@ -210,7 +211,7 @@ export default {
     },
     BtPay(){
         $('#modal-pay').modal('show');
-        //this.CashAmount = '';
+        //
     },
     AddOr(id){
         let item = this.ProductData.data.find((i)=>i.id==id);

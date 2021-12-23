@@ -86,60 +86,37 @@
               <!-- Column -->
               <div class="col-md-12">
                 <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">SALES DIFFERENCE</h5>
-                    <div class="row">
-                      <div class="col-6 m-t-30">
-                        <h1 class="text-primary">$647</h1>
-                        <p class="text-muted">APRIL 2017</p>
-                        <b>(150 Sales)</b>
-                      </div>
-                      <div class="col-6">
-                        <div id="sales1" class="text-end">
-                          <canvas
-                            width="100"
-                            height="100"
-                            style="
-                              display: inline-block;
-                              width: 100px;
-                              height: 100px;
-                              vertical-align: top;
-                            "
-                          ></canvas>
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-primary">
+                                    <h3 class="text-white box m-b-0"><i class="ti-stats-up"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0 text-info">{{formatPrice(sum_income)}} ກີບ</h3>
+                                    <h5 class="text-muted m-b-0">ລາຍຮັບ</h5></div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               <!-- Column -->
               <div class="col-md-12">
                 <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">VISIT STATASTICS</h5>
-                    <div class="row">
-                      <div class="col-6 m-t-30">
-                        <h1 class="text-info">$347</h1>
-                        <p class="light_op_text">APRIL 2017</p>
-                        <b class="">(150 Sales)</b>
-                      </div>
-                      <div class="col-6">
-                        <div id="sales2" class="text-end">
-                          <canvas
-                            width="88"
-                            height="154"
-                            style="
-                              display: inline-block;
-                              width: 88px;
-                              height: 154px;
-                              vertical-align: top;
-                            "
-                          ></canvas>
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-info">
+                                    <h3 class="text-white box m-b-0"><i class="ti-stats-down"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0 text-info">{{formatPrice(sum_expense)}} ກີບ</h3>
+                                    <h5 class="text-muted m-b-0">ລາຍຈ່າຍ</h5></div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="card">
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-warning">
+                                    <h3 class="text-white box m-b-0"><i class="ti-pie-chart"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0 text-info"> {{formatPrice(sum_profit)}} ກີບ</h3>
+                                    <h5 class="text-muted m-b-0">ກຳໄລ</h5></div>
+                            </div>
+                        </div>
               </div>
               <!-- Column -->
             </div>
@@ -161,7 +138,7 @@ export default {
   },
   data() {
     return {
-        ShChart:false,
+      ShChart:false,
       monthtype: "m",
       dmy: "",
       key: 0,
@@ -218,10 +195,28 @@ export default {
   },
 
   mounted() {},
-
+  computed:{
+    
+    sum_income(){
+        return this.data_income.reduce((num, item) => num + item.price, 0);
+    },
+    sum_expense(){
+        return this.data_expense.reduce((num, item) => num + item.price, 0);
+    },
+    sum_profit(){
+        return this.sum_income-this.sum_expense;
+    }
+  },
   methods: {
+    formatPrice(value) {
+      if(value==null || value==''){ return 0;} else {
+      let val = (value / 1).toFixed(0).replace(",", ".");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    },
     CreateReport() {
-      // console.log(this.dmy)
+    
+       //console.log(this.dateNow)
       this.$axios.get("/sanctum/csrf-cookie").then((response) => {
         axios
           .post("/api/report", {
@@ -249,7 +244,6 @@ export default {
         this.key++;
         let re_income = [];
         let re_expense = [];
-        let re_profit =[];
 
         let y = this.dmy.split("-")[0];
         let m = this.dmy.split("-")[1];
@@ -262,7 +256,7 @@ export default {
 
         re_income = this.Get_data_chart(lastday, this.data_income) || 0;
         re_expense = this.Get_data_chart(lastday, this.data_expense) || 0;
-       // re_profit = this.Get_data_cahart_profit(lastday,this.data_income,this.data_expense)||0;
+       
 
         this.chdata = {
           labels: chart_label,
@@ -279,12 +273,7 @@ export default {
               borderColor: "#DC3912",
               data: re_expense,
             },
-            // {
-            //   label: "ກຳໄລ",
-            //   fill: false,
-            //   borderColor: "#FF9900",
-            //   data: re_profit,
-            // },
+
           ],
         };
         this.update_chart = Math.floor(Math.random() * 100);
@@ -420,76 +409,7 @@ export default {
 
       return databack;
     },
-    Get_data_cahart_profit(date,income,expense){
-
-
-            let new_profit = [];
-
-             let new_db_in = [];
-            for (let y = 0; y < income.length; y++) {
-                if (income[y] != "") {
-                let day = this.Getday(income[y].created_at);
-                new_db_in.push({ price: income[y].price, day: day });
-                }
-            }
-
-            let update_db_in = new_db_in.reduce((a, c) => {
-                let filtered = a.filter((el) => el.day == c.day);
-                if (filtered.length > 0) {
-                a[a.indexOf(filtered[0])].price =
-                    parseInt(a[a.indexOf(filtered[0])].price) + parseInt(c.price);
-                } else {
-                a.push(c);
-                }
-                return a;
-            }, []);
-
-
-
-
-            let new_db_ex = [];
-            for (let y = 0; y < expense.length; y++) {
-                if (expense[y] != "") {
-                let day = this.Getday(expense[y].created_at);
-                new_db_ex.push({ price: expense[y].price, day: day });
-                }
-            }
-
-            let update_db_ex = new_db_ex.reduce((a, c) => {
-                let filtered = a.filter((el) => el.day == c.day);
-                if (filtered.length > 0) {
-                a[a.indexOf(filtered[0])].price =
-                    parseInt(a[a.indexOf(filtered[0])].price) + parseInt(c.price);
-                } else {
-                a.push(c);
-                }
-                return a;
-            }, []);
-
-            // console.log(update_db_ex)
-
-            for (let i = 0; i < date; i++) {
-                let type = true;
-                for (let k = 0; k < update_db_in.length; k++) {
-                if (update_db_in[k].day == i + 1) {
-                    if (type) {
-
-                    let new_price = parseInt(update_db_ex[k].price)
-                   // if(new_price>0){  new_profit.push(new_price); } else { new_profit.push(0);}
-                    new_profit.push(new_price);
-                    type = false;
-                    }
-                }
-                }
-                if (type) {
-                new_profit.push(0);
-                type = false;
-                }
-            }
-
-        console.log(new_profit)
-        return new_profit;
-    }
+   
   },
 
   beforeRouteEnter(to, from, next) {
