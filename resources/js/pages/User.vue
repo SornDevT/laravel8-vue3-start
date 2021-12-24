@@ -1,5 +1,7 @@
 <template>
     <div>
+        <div class="page-wrapper" style="min-height: 905px;">
+            <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
                         <h4 class="text-themecolor">Dashboard 1</h4>
@@ -147,6 +149,8 @@
                     </div>
                     
                 </div>
+            </div>
+        </div>
                 
     </div>
 </template>
@@ -162,6 +166,12 @@ export default {
     mounted() {},
 
     methods: {},
+    beforeRouteEnter(to, from, next) {
+    if (!window.Laravel.isLoggedin) {
+      window.location.href = "/login";
+    }
+    next();
+  },
 };
 </script>
 

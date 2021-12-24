@@ -4,7 +4,7 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <header class="topbar">
+        <header class="topbar" v-if="isLoggedIn">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <!-- ============================================================== -->
                 <!-- Logo -->
@@ -39,14 +39,14 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        
+
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
 
-                        <li class="nav-item"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class=" icon-login"></i></a></li>
+                        <li class="nav-item"> <a class="nav-link  waves-effect waves-light" @click="logout()" href="javascript:void(0)"><i class=" icon-login"></i></a></li>
                     </ul>
                 </div>
             </nav>
@@ -57,7 +57,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar">
+        <aside class="left-sidebar" v-if="isLoggedIn">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar ps ps--theme_default ps--active-y" data-ps-id="2c10afb3-0ae7-58b5-4272-d170eff1cd59">
                 <!-- User Profile-->
@@ -99,8 +99,8 @@
                 <nav class="sidebar-nav active">
                     <ul id="sidebarnav" class="in">
                         <li>
-                           
-                            <router-link to="/" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+
+                            <router-link to="/store" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="icon-speedometer"></i>
                                 <span class="hide-menu">Store
                                 </span>
@@ -113,13 +113,7 @@
                                 </span>
                             </router-link>
                         </li>
-                        <li >
-                            <router-link to="/report" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                <i class="icon-chart"></i>
-                                <span class="hide-menu">ລາຍງານ Report
-                                </span>
-                            </router-link>
-                        </li>
+                        
                         <li >
                             <router-link to="/transection" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class=" icon-graph"></i>
@@ -127,14 +121,21 @@
                                 </span>
                             </router-link>
                         </li>
-
                         <li >
+                            <router-link to="/report" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="icon-chart"></i>
+                                <span class="hide-menu">ລາຍງານ Report
+                                </span>
+                            </router-link>
+                        </li>
+
+                        <!-- <li >
                             <router-link to="/user" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="icon-user"></i>
                                 <span class="hide-menu">ຈັດການຜູ້ໃຊ້
                                 </span>
                             </router-link>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </nav>
@@ -142,17 +143,13 @@
 
         </aside>
 
-        <div class="page-wrapper" style="min-height: 905px;">
 
-            <div class="container-fluid">
 
                   <router-view/>
 
-            </div>
 
-        </div>
 
-        <footer class="footer">
+        <footer class="footer" v-if="isLoggedIn">
             © 2021 Sorndev
         </footer>
 
@@ -165,7 +162,7 @@ export default {
 
     data() {
         return {
-
+            isLoggedIn: false,
         };
     },
 
@@ -175,10 +172,33 @@ export default {
 
     methods: {
 
+         logout() {
+            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                this.$axios.post('/api/logout')
+                    .then(response => {
+                        if (response.data.success) {
+                            window.location.href = "/"
+                        } else {
+                            console.log(response)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+            })
+        }
+
     },
+    created(){
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedIn = true
+        }
+    }
 };
 </script>
 
-<style lang="scss" scoped>
-
+<style >
+    .cursor-pointer{
+  cursor: pointer;
+}
 </style>

@@ -5,11 +5,28 @@ import Report from "../pages/Report.vue";
 import Transection from "../pages/Transection.vue";
 import User from "../pages/User.vue";
 import Notfound from "../pages/Notfound.vue"
+import Login from "../pages/Login.vue"
+import Register from "../pages/register.vue"
 
 export const routes = [
     {
-        name: "store",
+        name: "login2",
+        path: "/login",
+        component: Login,
+    },
+    {
+        name: "login",
         path: "/",
+        component: Login,
+    },
+    {
+        name: "register",
+        path: "/register",
+        component: Register,
+    },
+    {
+        name: "store",
+        path: "/store",
         component: Store,
     },
     {
@@ -41,6 +58,11 @@ export const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes: routes,
+    scrollBehavior() {
+        window.scrollTo(0, 0);
+    }
 });
+
+
 
 export default router;
