@@ -11,19 +11,40 @@ class TransectionController extends Controller
 {
     //
 
-    public function index(){
+    public function index(Request $request){
         //$search = \Request::get('s');
-        $tran = Transection::orderBy('created_at', 'desc')
-        ->paginate(10)
-        ->toArray();
-        return array_reverse($tran);
+
+        $monthtype = $request->monthtype;
+        $date = $request->dmy;
+
+        if($request->dmy==''){
+                    $tran = Transection::orderBy('created_at', 'desc')
+                    ->paginate(10)
+                    ->toArray();
+                    return array_reverse($tran);
+        } else {
+            $m = explode('-',$date)[1];
+            $y = explode('-',$date)[0];
+    
+                if($monthtype=='m'){
+                    $tran = Transection::whereYear('created_at', '=', $y)->whereMonth('created_at', '=', $m)->orderBy('created_at', 'desc')
+                    ->paginate(10)
+                    ->toArray();
+                    return array_reverse($tran);
+                }else{
+                    $tran = Transection::whereYear('created_at', '=', $y)->orderBy('created_at', 'desc')
+                    ->paginate(10)
+                    ->toArray();
+                    return array_reverse($tran);
+                }
+            }
+        
+       
     }
 
     public function add(Request $request){
         try {
-
             foreach($request->listorder as $item){
-
                 $tran = Transection::all()->sortByDesc('id')->take(1)->toArray();
                 $number = 1;
                 foreach($tran as $new)

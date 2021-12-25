@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="row" style="height: 67vh; overflow: auto;">
-                                    <div v-for="list in ProductData.data" :key="list.id" class="col-lg-3 col-md-6">
+                                    <div v-for="list in ProductData.data" :key="list.id" class="col-6 col-lg-3 col-md-6">
                                         <div class="card cursor-pointer" @click="AddToOrder(list.id)">
                                             <img :src="urlLocaltion+'/assets/images/'+list.images" class="card-img-top img-responsive" style=" width:100%; height: 140px; object-fit: cover; object-position: center;" v-if="list.images" />
                                             <img :src="urlLocaltion+'/assets/images/no_images.jpg'" class="card-img-top img-responsive" style=" width:100%; height: 140px; object-fit: cover; object-position: center;" v-if="!list.images" />
@@ -126,7 +126,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row justify-content-center d-flex mt-2">
+              <div class="row justify-content-center d-flex mt-2 text-center">
                 <button type="button" class="btn btn-success" @click="ConfirmPay"  style="width:180px;" :disabled="CheckCPay"><i class="fas fa-coins"></i> ບືນຍັນຊຳລ່ະເງິນ </button>
               </div>
 

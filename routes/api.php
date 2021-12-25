@@ -23,7 +23,7 @@ Route::group(['prefix' => 'store', 'middleware' => 'auth:sanctum'], function () 
 });
 
 Route::group(['prefix' => 'transection', 'middleware' => 'auth:sanctum'], function () {
-    Route::get('/', [TransectionController::class, 'index']);
+    Route::post('/', [TransectionController::class, 'index']);
     Route::post('add', [TransectionController::class, 'add']);
     Route::get('edit/{id}', [TransectionController::class, 'edit']);
     Route::post('update/{id}', [TransectionController::class, 'update']);

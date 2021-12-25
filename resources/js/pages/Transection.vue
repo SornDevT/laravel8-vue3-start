@@ -23,15 +23,16 @@
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <h4 class="card-title">ການເຄື່ອນໄຫວ</h4>
-              <!-- <div class="">
-                <div class="btn-group me-2" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary"> <i class="mdi mdi-menu-right"></i> ວັນ</button>
-                  <button type="button" class="btn btn-secondary"> ເດືອນ </button>
-                  <button type="button" class="btn btn-secondary">ປີ</button>
+              <div class="text-end">
+                  <div class="btn-group me-2" role="group" aria-label="Basic example" >
+                    <button type="button" class="btn btn-secondary" @click="monthtype = 'm'" > <i class="mdi mdi-menu-right" v-if="monthtype == 'm'"></i> ເດືອນ </button>
+                    <button type="button" class="btn btn-secondary" @click="monthtype = 'y'" > <i class="mdi mdi-menu-right" v-if="monthtype == 'y'"></i> ປີ </button>
+                  </div>
+                  <input type="date" style="width: 180px" v-model="dmy" class="form-control me-2" /> 
+                  <button class="btn btn-success text-white me-2" @click="GetAllTran()" >
+                    <i class="mdi mdi-view-list"></i> ສະແດງການເຄື່ອນໄຫວ
+                  </button>
                 </div>
-                <input type="date" style="width:180px"  class="form-control me-2">
-                <button type="button" class="btn btn-success text-white me-2"> <i class="mdi mdi-view-list"></i> ສະແດງທຸລະກຳ</button>
-              </div> -->
             </div>
             <div class="table-responsive mt-4">
               <table class="table color-table info-table border">
@@ -78,6 +79,8 @@ export default {
   data() {
     return {
       Transection:[],
+      monthtype: "y",
+      dmy: "",
     };
   },
 
@@ -93,7 +96,10 @@ export default {
     },
     GetAllTran(page){
              this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-                axios.get(`/api/transection?page=${page}`)
+                axios.post(`/api/transection?page=${page}`,{
+                  monthtype:this.monthtype,
+                  dmy:this.dmy
+                })
                     .then((response) => {
                         this.Transection = response.data;
                     })

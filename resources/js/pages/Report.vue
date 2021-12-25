@@ -30,38 +30,11 @@
                 </div>
 
                 <div class="text-end">
-                  <div
-                    class="btn-group me-2"
-                    role="group"
-                    aria-label="Basic example"
-                  >
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      @click="monthtype = 'm'"
-                    >
-                      <i class="mdi mdi-menu-right" v-if="monthtype == 'm'"></i>
-                      ເດືອນ
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      @click="monthtype = 'y'"
-                    >
-                      <i class="mdi mdi-menu-right" v-if="monthtype == 'y'"></i>
-                      ປີ
-                    </button>
+                  <div class="btn-group me-2" role="group" aria-label="Basic example" >
+                    <button type="button" class="btn btn-secondary" @click="monthtype = 'm'" > <i class="mdi mdi-menu-right" v-if="monthtype == 'm'"></i> ເດືອນ </button>
+                    <button type="button" class="btn btn-secondary" @click="monthtype = 'y'" > <i class="mdi mdi-menu-right" v-if="monthtype == 'y'"></i> ປີ </button>
                   </div>
-                  <input
-                    type="date"
-                    style="width: 180px"
-                    v-model="dmy"
-                    class="form-control me-2"
-                  />
-                  <button
-                    class="btn btn-success text-white me-2"
-                    @click="CreateReport()"
-                  >
+                  <input type="date" style="width: 180px" v-model="dmy" class="form-control me-2" /> <button class="btn btn-success text-white me-2" @click="CreateReport()" >
                     <i class="mdi mdi-view-list"></i> ສ້າງລາຍງານ
                   </button>
                 </div>
@@ -154,15 +127,7 @@ export default {
                 display: true,
                 beginAtZero: false,
                 callback: function (value, index, values) {
-                  return (
-                    Number(value)
-                      .toFixed(0)
-                      .replace(/./g, function (c, i, a) {
-                        return i > 0 && c !== "," && (a.length - i) % 3 === 0
-                          ? "." + c
-                          : c;
-                      }) + " ກີບ"
-                  );
+                  return ( Number(value) .toFixed(0) .replace(/./g, function (c, i, a) { return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c; }) + " ກີບ" );
                 },
               },
               gridLines: {
@@ -175,14 +140,7 @@ export default {
           callbacks: {
             label: function (tooltipItem, data) {
               return (
-                Number(tooltipItem.yLabel)
-                  .toFixed(0)
-                  .replace(/./g, function (c, i, a) {
-                    return i > 0 && c !== "," && (a.length - i) % 3 === 0
-                      ? "." + c
-                      : c;
-                  }) + " ກີບ"
-              );
+                Number(tooltipItem.yLabel) .toFixed(0) .replace(/./g, function (c, i, a) { return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c; }) + " ກີບ" );
             },
           },
           mode: "index",

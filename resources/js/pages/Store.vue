@@ -406,21 +406,19 @@ export default {
      // this.FormData.splice(index, 1); //ແລະນຳເອົາໂຕເລກ index ໄປລຶບອອກໂດຍ ຟັງຊັ່ນ splice
       // ຂຽນແບບຫຍໍ້ໆ this.FromData.splice(this.FromData.map(i=>i.id).indexOf(id),1)
 
-
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-                axios.delete(`/api/store/delete/${id}`)
-                    .then((response) => {
-                        //this.FormData = response.data;
-
-                        if (response.data.success) {
-                            this.GetAllStore();
-                        }
-
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-                });
+    alert('ລະບົບ ທົດຊອບ ບໍ່ອານຸຍາດໃຫ້ລຶບຂໍ້ມູນ!')
+        // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+        //         axios.delete(`/api/store/delete/${id}`)
+        //             .then((response) => {
+        //                 //this.FormData = response.data;
+        //                 if (response.data.success) {
+        //                     this.GetAllStore();
+        //                 }
+        //             })
+        //             .catch((error) => {
+        //                 console.log(error);
+        //             })
+        //         });
 
     },
     formatPrice(value) {
