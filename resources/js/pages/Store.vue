@@ -20,7 +20,7 @@
 
         <dashqrap/>
 
-        
+
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
@@ -63,6 +63,7 @@
                   <img
                     :src="imagesPreview"
                     class="img-responsive radius"
+
                   />
                   <input type="file" name="file" class="form-control mt-2" @change="onSelected">
                 </div>
@@ -109,11 +110,11 @@
                   </div>
                 </div>
               </div>
-            
+
 
             <div v-if="!FormShow">
 
-            
+
             <div class="row mt-2">
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
@@ -125,7 +126,7 @@
             </div>
 
               <div class="table-responsive" >
-            
+
                 <table
                   class=" color-table purple-table
                     table table-hover
@@ -147,8 +148,8 @@
                     <tr v-for="list in FormData.data" :key="list.id">
                       <td class="text-center">{{ list.id }}</td>
                       <td width="150">
-                        <img :src="urlLocaltion+'/assets/images/'+list.images" class="img-responsive radius" v-if="list.images" />
-                        <img :src="urlLocaltion+'/assets/images/no_images.jpg'" class="img-responsive radius" v-if="!list.images" />
+                        <img :src="urlLocaltion+'/assets/images/'+list.images" class="img-responsive radius" v-if="list.images" style=" width:100%; height: 80px; object-fit: cover; object-position: center;" />
+                        <img :src="urlLocaltion+'/assets/images/no_images.jpg'" class="img-responsive radius" v-if="!list.images" style=" width:100%; height: 80px; object-fit: cover; object-position: center;" />
                       </td>
                       <td>
                         {{
@@ -206,7 +207,7 @@
 export default {
   name: "Home",
   components:{
-    
+
   },
   data() {
     return {

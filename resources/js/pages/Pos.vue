@@ -24,9 +24,15 @@
                             </div>
                         </div>
 
+                        
+
                         <div class="row" style="height: 67vh; overflow: auto;">
                                     <div v-for="list in ProductData.data" :key="list.id" class="col-6 col-lg-3 col-md-6">
                                         <div class="card cursor-pointer" @click="AddToOrder(list.id)">
+                                            <span v-for="listorder in ListOrder" :key="listorder.index">
+                                                <span class="bg-success p-2" v-if="list.id==listorder.id" style="position: absolute; right: 0px; top: 0px; border-bottom-left-radius: 8px; color: #FFF; font-size: 18px;">{{listorder.order_amount}}</span>
+                                            </span>
+                                            
                                             <img :src="urlLocaltion+'/assets/images/'+list.images" class="card-img-top img-responsive" style=" width:100%; height: 140px; object-fit: cover; object-position: center;" v-if="list.images" />
                                             <img :src="urlLocaltion+'/assets/images/no_images.jpg'" class="card-img-top img-responsive" style=" width:100%; height: 140px; object-fit: cover; object-position: center;" v-if="!list.images" />
                                             <div class="card-body p-2 text-center">

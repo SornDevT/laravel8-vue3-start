@@ -17,7 +17,8 @@
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="password" placeholder="Password" v-model="password" v-on:keyup="sigin($event)">
                                     </div>
-                                    <div class="text-center">
+                                    <div class="d-flex justify-content-between">
+                                        <router-link to="/register">ລົງທະບຽນ</router-link>
                                         <button type="button" class="btn btn-primary text-white" @click="Login()">ເຂົ້າສູ່ລະບົບ</button>
                                     </div>
                                     <div class="alert alert-warning mt-4" v-if="showError">{{textError}}</div>

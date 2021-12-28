@@ -109,7 +109,7 @@
                         <li >
                             <router-link to="/pos" class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="icon-handbag"></i>
-                                <span class="hide-menu">ຂາຍສິນຄ້າ POS
+                                <span class="hide-menu">ຂາຍສິນຄ້າ POS 
                                 </span>
                             </router-link>
                         </li>
